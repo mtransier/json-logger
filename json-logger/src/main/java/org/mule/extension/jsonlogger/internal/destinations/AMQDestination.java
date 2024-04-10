@@ -1,7 +1,15 @@
 package org.mule.extension.jsonlogger.internal.destinations;
 
-import com.mulesoft.mq.restclient.api.*;
-import com.mulesoft.mq.restclient.impl.OAuthCredentials;
+import com.mulesoft.mq.restclient.AnypointMqClient;
+import com.mulesoft.mq.restclient.client.mq.domain.AnypointMQMessage;
+import com.mulesoft.mq.restclient.client.mq.domain.AnypointMQMessageBuilder;
+import com.mulesoft.mq.restclient.client.mq.domain.AnypointMQProperties;
+import com.mulesoft.mq.restclient.client.mq.domain.MessageIdResult;
+import com.mulesoft.mq.restclient.client.mq.domain.OAuthCredentials;
+import com.mulesoft.mq.restclient.internal.CourierObserver;
+import com.mulesoft.mq.restclient.internal.DestinationLocation;
+import com.mulesoft.mq.restclient.internal.DestinationLocator;
+
 import org.mule.extension.jsonlogger.internal.destinations.amq.client.MuleBasedAnypointMQClientFactory;
 import org.mule.runtime.api.metadata.MediaType;
 import org.mule.runtime.api.scheduler.SchedulerService;
@@ -119,7 +127,7 @@ public class AMQDestination implements Destination {
                     mediaType.getCharset(), null, new HashMap<>(), null, null);
 
             this.destinationLocator.getDestination(this.location)
-                    .send(message)
+                    .send(message, false, 1)
                     .subscribe(new CourierObserver<MessageIdResult>() {
                         @Override
                         public void onSuccess(MessageIdResult result) {
@@ -139,7 +147,7 @@ public class AMQDestination implements Destination {
     }
 
     private static AnypointMQMessage createMessage(String messageBody, boolean sendContentType, String mediaType,
-                                                   java.util.Optional<Charset> charset, String messageId, Map<String, String> properties,
+                                                   java.util.Optional<Charset> charset, String messageId, Map<String, Object> properties,
                                                    java.util.Optional<Long> deliveryDelay, java.util.Optional<String> messageGroupId) {
         AnypointMQMessageBuilder messageBuilder = new AnypointMQMessageBuilder();
         messageBuilder.withBody(new ByteArrayInputStream(messageBody.getBytes()));
@@ -148,7 +156,7 @@ public class AMQDestination implements Destination {
         messageBuilder.withMessageId(id);
 
         if (sendContentType) {
-            messageBuilder.addProperty(AnypointMQMessage.Properties.AMQ_MESSAGE_CONTENT_TYPE, mediaType);
+            messageBuilder.addProperty(AnypointMQProperties.AMQ_MESSAGE_CONTENT_TYPE, mediaType);
             charset.map(Object::toString)
                     .ifPresent(value -> messageBuilder.addProperty("MULE_ENCODING", value));
         }

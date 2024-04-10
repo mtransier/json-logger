@@ -2,7 +2,6 @@ package org.mule.extension.jsonlogger.internal.destinations;
 
 import com.mule.extensions.amqp.api.message.AmqpMessageBuilder;
 import com.mule.extensions.amqp.api.message.AmqpProperties;
-import org.mule.extension.jsonlogger.api.pojos.Priority;
 import org.mule.runtime.api.metadata.TypedValue;
 import org.mule.runtime.extension.api.annotation.param.NullSafe;
 import org.mule.runtime.extension.api.annotation.param.Optional;

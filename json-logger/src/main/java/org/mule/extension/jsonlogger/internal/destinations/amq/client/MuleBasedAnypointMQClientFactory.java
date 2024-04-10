@@ -6,13 +6,14 @@
 package org.mule.extension.jsonlogger.internal.destinations.amq.client;
 
 //import com.google.common.base.Preconditions;
-import com.mulesoft.mq.restclient.api.AnypointMQClientFactory;
-import com.mulesoft.mq.restclient.api.AnypointMqClient;
-import com.mulesoft.mq.restclient.api.CourierAuthenticationCredentials;
-import com.mulesoft.mq.restclient.impl.OAuthCredentials;
-import com.mulesoft.mq.restclient.internal.client.DefaultAnypointMqClient;
 import org.mule.runtime.api.scheduler.Scheduler;
 import org.mule.runtime.http.api.client.HttpClient;
+
+import com.mulesoft.mq.restclient.AnypointMQClientFactory;
+import com.mulesoft.mq.restclient.AnypointMqClient;
+import com.mulesoft.mq.restclient.DefaultAnypointMqClient;
+import com.mulesoft.mq.restclient.client.mq.domain.CourierAuthenticationCredentials;
+import com.mulesoft.mq.restclient.client.mq.domain.OAuthCredentials;
 
 public class MuleBasedAnypointMQClientFactory implements AnypointMQClientFactory {
 

@@ -1,5 +1,10 @@
 # Json-logger Extension
 
+## 2.2.0 version - Release notes
+
+* Updated to support Java 17
+* Upgraded dependencies to fix known vulnerabilities
+
 ## 2.1.0 version - Release notes
 
 * Minimum supported mule runtime 4.3

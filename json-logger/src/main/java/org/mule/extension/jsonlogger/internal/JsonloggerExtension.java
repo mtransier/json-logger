@@ -9,6 +9,8 @@ import org.mule.runtime.extension.api.annotation.Extension;
 import org.mule.runtime.extension.api.annotation.Configurations;
 import org.mule.runtime.extension.api.annotation.SubTypeMapping;
 import org.mule.runtime.extension.api.annotation.dsl.xml.Xml;
+import org.mule.sdk.api.annotation.JavaVersionSupport;
+import org.mule.sdk.api.meta.JavaVersion;
 
 /**
  * This is the main class of an extension, is the entry point from which configurations, connection providers, operations
@@ -20,6 +22,7 @@ import org.mule.runtime.extension.api.annotation.dsl.xml.Xml;
 @Configurations(JsonloggerConfiguration.class)
 @SubTypeMapping(baseType = Destination.class,
         subTypes = {JMSDestination.class, AMQDestination.class, AMQPDestination.class})
+@JavaVersionSupport({JavaVersion.JAVA_8, JavaVersion.JAVA_11, JavaVersion.JAVA_17})
 public class JsonloggerExtension {
 
 }

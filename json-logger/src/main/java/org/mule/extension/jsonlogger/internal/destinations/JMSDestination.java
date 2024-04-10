@@ -1,6 +1,5 @@
 package org.mule.extension.jsonlogger.internal.destinations;
 
-import org.mule.extension.jsonlogger.api.pojos.Priority;
 import org.mule.extensions.jms.api.message.JmsMessageBuilder;
 import org.mule.extensions.jms.api.message.JmsxProperties;
 import org.mule.runtime.api.metadata.TypedValue;
