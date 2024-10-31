@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> The JSON Logger has moved to [anypointcloud](https://github.com/anypointcloud/json-logger).
+
 # JSON Logger - Mule 4
 
 Drop-in replacement for default Mule Logger that outputs a JSON structure based on a predefined JSON schema.
